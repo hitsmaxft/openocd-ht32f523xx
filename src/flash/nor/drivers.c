@@ -79,6 +79,7 @@ extern const struct flash_driver xcf_flash;
 extern const struct flash_driver xmc1xxx_flash;
 extern const struct flash_driver xmc4xxx_flash;
 extern const struct flash_driver rsl10_flash;
+extern const struct flash_driver ht32f523xx_flash;;
 
 /**
  * The list of built-in flash drivers.
@@ -109,6 +110,7 @@ static const struct flash_driver * const flash_drivers[] = {
 	&fm3_flash,
 	&fm4_flash,
 	&fespi_flash,
+    &ht32f523xx_flash,
 	&jtagspi_flash,
 	&kinetis_flash,
 	&kinetis_ke_flash,
@@ -155,6 +157,7 @@ static const struct flash_driver * const flash_drivers[] = {
 	&xmc4xxx_flash,
 	&w600_flash,
 	&rsl10_flash,
+	&ht32f523xx_flash,
 	NULL,
 };
 
