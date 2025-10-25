@@ -11,6 +11,7 @@ in pkgs.mkShell {
     pkg-config
     automake
     libusb1
+    hidapi
     #pythonEnv            # Python 环境
     #openocd
     #telnet

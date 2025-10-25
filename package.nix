@@ -2,7 +2,6 @@
   stdenv,
   git,
   lib,
-  fetchurl,
   pkg-config,
   hidapi,
   tcl,
@@ -10,12 +9,11 @@
   libjaylink,
   libusb1,
   libgpiod_1,
-  automake,
   enableFtdi ? true,
   libftdi1,
 
   # Allow selection the hardware targets (SBCs, JTAG Programmers, JTAG Adapters)
-  extraHardwareSupport ? [ ],
+  extraHardwareSupport ? ["cmsis-dap" ],
 }:
 let
 
@@ -23,9 +21,9 @@ let
   notWindows = !isWindows;
 
 in
-stdenv.mkDerivation rec {
-  pname = "openocd-ht32";
-  version = "0.12.0-mod";
+stdenv.mkDerivation {
+  pname = "openocd-ht32f52xx";
+  version = "0.12.0-patch";
   src = ./.;
 
   nativeBuildInputs = [
