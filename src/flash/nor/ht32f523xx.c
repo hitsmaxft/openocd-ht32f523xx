@@ -401,6 +401,7 @@ const struct flash_driver ht32f523xx_flash = {
     .commands = ht32f523xx_command_handlers,
     .flash_bank_command = ht32f523xx_flash_bank_command,
 
+    .usage = "flash bank <name> ht32f523xx <base> <size> 0 0 <target>",
     .erase = ht32f523xx_erase,
     .protect = ht32f523xx_protect,
     .write = ht32f523xx_write,

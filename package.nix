@@ -1,5 +1,8 @@
 {
   stdenv,
+  libtool,
+  glibtool,
+  which,
   git,
   lib,
   pkg-config,
@@ -11,6 +14,8 @@
   libgpiod_1,
   enableFtdi ? true,
   libftdi1,
+  autoconf,
+  automake,
 
   # Allow selection the hardware targets (SBCs, JTAG Programmers, JTAG Adapters)
   extraHardwareSupport ? ["cmsis-dap" ],
@@ -30,10 +35,17 @@ stdenv.mkDerivation {
     pkg-config
     tcl
     git
+    autoconf
+    automake
+    glibtool
   ];
 
   buildInputs = [
     libusb1
+    libtool
+    which
+    git
+    glibtool
   ]
   ++ lib.optionals notWindows [
     hidapi
@@ -44,6 +56,11 @@ stdenv.mkDerivation {
   ++
     # tracking issue for v2 api changes https://sourceforge.net/p/openocd/tickets/306/
     lib.optional stdenv.hostPlatform.isLinux libgpiod_1;
+
+    preConfigureHooks = ''
+      export SKIP_SUBMODULE=1
+      bash ./bootstrap
+'';
 
   configureFlags = [
     "--disable-werror"
